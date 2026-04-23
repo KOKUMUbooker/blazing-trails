@@ -13,7 +13,7 @@
 
 <h3 class="mt-5 mb-4">Search results for "@SearchTerm"</h3>
 
-<SearchFilter SearchTerm="@SearchTerm" />
+<SearchFilter SearchTerm="@SearchTerm" MaxTime="@MaxTime" MaxLength="@MaxLength"/>
 
 @if (_searchResults == null)
 {
@@ -34,8 +34,11 @@ else
     [Parameter] 
     public string SearchTerm { get; set; } = default!;
 
-    [Parameter]
+    [Parameter, SupplyParameterFromQuery]
     public int? MaxLength { get; set; }
+
+    [Parameter, SupplyParameterFromQuery] 
+    public int? MaxTime { get; set; }
 
     private IEnumerable<Trail> _cachedSearchResults = Array.Empty<Trail>();
     private IEnumerable<Trail>? _searchResults;
@@ -57,13 +60,27 @@ else
         }
     }
 
-    protected override void OnParametersSet()
+    protected override void OnParametersSet() => UpdateFilters();
+
+    private void UpdateFilters()
     {
-        if (_cachedSearchResults.Any() && MaxLength.HasValue)
+        var filters = new List<Func<Trail, bool>>();
+
+        if (MaxLength is not null && MaxLength > 0)
         {
-            _searchResults = _cachedSearchResults.Where(x => x.Length <= MaxLength.Value);
+            filters.Add(x => x.Length <= MaxLength);
         }
-        else if (_cachedSearchResults.Any() && MaxLength is null)
+
+        if (MaxTime is not null && MaxTime > 0)
+        {
+            filters.Add(x => x.TimeInMinutes <= MaxTime * 60);
+        }
+
+        if (filters.Any())
+        {
+            _searchResults = _cachedSearchResults.Where(trail => filters.All(filter => filter(trail)));
+        }
+        else
         {
             _searchResults = _cachedSearchResults;
         }
