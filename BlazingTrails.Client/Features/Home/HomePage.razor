@@ -3,13 +3,15 @@
 
 <PageTitle>Blazing Trails</PageTitle>
 
+<TrailDetails Trail="_selectedTrail" />
+<TrailSearch />
+
 @if (_trails == null)
 {
     <p>Loading trails...</p>
 }
 else
 {
-    <TrailDetails Trail="_selectedTrail" />
     <div class="grid">
         @foreach (var trail in _trails)
         {
