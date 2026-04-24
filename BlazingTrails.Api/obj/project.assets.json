@@ -64,6 +64,18 @@
           }
         }
       },
+      "GreatIdeas.Blazored.FluentValidation/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "12.0.0"
+        },
+        "compile": {
+          "lib/net9.0/GreatIdeas.Blazored.FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/net9.0/GreatIdeas.Blazored.FluentValidation.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -468,6 +480,7 @@
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "BlazingTrails.Shared": "1.0.0",
+          "GreatIdeas.Blazored.FluentValidation": "3.0.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "10.0.6",
           "Microsoft.DotNet.HotReload.WebAssembly.Browser": "10.0.202"
         },
@@ -558,6 +571,20 @@
         "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.xml",
         "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll",
         "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.xml"
+      ]
+    },
+    "GreatIdeas.Blazored.FluentValidation/3.0.0": {
+      "sha512": "KSP2dSpzqigTL8wP4XXByR4g59n/os2ZkVM8I1SYn9QvZwEJdA4+abriXDYvzBaSrMR9czgo3pSUIYER3lHc2g==",
+      "type": "package",
+      "path": "greatideas.blazored.fluentvalidation/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "greatideas.blazored.fluentvalidation.3.0.0.nupkg.sha512",
+        "greatideas.blazored.fluentvalidation.nuspec",
+        "icon.png",
+        "lib/net8.0/GreatIdeas.Blazored.FluentValidation.dll",
+        "lib/net9.0/GreatIdeas.Blazored.FluentValidation.dll"
       ]
     },
     "Humanizer.Core/2.8.26": {
